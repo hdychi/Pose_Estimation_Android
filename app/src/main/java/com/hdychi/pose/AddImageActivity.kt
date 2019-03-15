@@ -1,8 +1,10 @@
 package com.hdychi.pose
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_add_image.*
@@ -43,6 +45,7 @@ class AddImageActivity : AppCompatActivity() {
                 uploadImage(file)
                 btn_add_image.text = "已上传图片，服务器处理中...."
                 btn_add_image.isEnabled = false
+                btn_add_image.setBackgroundResource(R.drawable.shape_disable_button)
             }
         }
     }
@@ -65,7 +68,7 @@ class AddImageActivity : AppCompatActivity() {
                     .into(iv_add_image)
             } catch (e : Exception) {
                 e.printStackTrace()
-                btn_add_image.text = "网络错误 ${e.message}"
+                Toast.makeText(this@AddImageActivity, "网络错误: " + e.message, Toast.LENGTH_LONG).show()
             }
         }
     }
